@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editing {{ app.user.firstname }}'s Profile{% endblock %}
+
+{% block body %}
+<div class="">
+    <h1>Adding {{ app.user.firstname }}'s Diplomas</h1>
+    {{form(form4) }}
+</div>
+<div class="">
+{% for Diplomas in app.user.Diplomas %}
+    <p>{{Diplomas.NAME}}</p><a href="/user/diplomas/edit/{{Diplomas.id}}">Edit</a>
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -50,9 +50,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Hobbies::class)]
     private $hobbies;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Skills::class)]
+    private $skills;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Diplomas::class)]
+    private $diplomas;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Jobs::class)]
+    private $jobs;
+
     public function __construct()
     {
         $this->hobbies = new ArrayCollection();
+        $this->skills = new ArrayCollection();
+        $this->diplomas = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -240,6 +252,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($hobby->getUser() === $this) {
                 $hobby->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Skills>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skills $skill): self
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+            $skill->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skills $skill): self
+    {
+        if ($this->skills->removeElement($skill)) {
+            // set the owning side to null (unless already changed)
+            if ($skill->getUser() === $this) {
+                $skill->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Diplomas>
+     */
+    public function getDiplomas(): Collection
+    {
+        return $this->diplomas;
+    }
+
+    public function addDiploma(Diplomas $diploma): self
+    {
+        if (!$this->diplomas->contains($diploma)) {
+            $this->diplomas[] = $diploma;
+            $diploma->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiploma(Diplomas $diploma): self
+    {
+        if ($this->diplomas->removeElement($diploma)) {
+            // set the owning side to null (unless already changed)
+            if ($diploma->getUser() === $this) {
+                $diploma->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Jobs>
+     */
+    public function getJobs(): Collection
+    {
+        return $this->jobs;
+    }
+
+    public function addJob(Jobs $job): self
+    {
+        if (!$this->jobs->contains($job)) {
+            $this->jobs[] = $job;
+            $job->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJob(Jobs $job): self
+    {
+        if ($this->jobs->removeElement($job)) {
+            // set the owning side to null (unless already changed)
+            if ($job->getUser() === $this) {
+                $job->setUser(null);
             }
         }
 

@@ -4,14 +4,13 @@
 
 {% block body %}
 <div class="">
-    <h1>Adding {{ app.user.firstname }}'s Jobs</h1>
-    {{form(form3) }}
+    <h1>Adding {{ app.user.firstname }}'s Skills</h1>
+    {{form(form) }}
 </div>
 <div class="">
-{% for Jobs in app.user.Hobbies %}
-    <h2>{{Jobs.NAME}}</h2>
+{% for Skills in app.user.Skills %}
+    <h2>{{Skills.NAME}}</h2>
 {% endfor %}
 
 </div>
-
 {% endblock %}
