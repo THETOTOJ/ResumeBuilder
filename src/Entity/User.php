@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -44,6 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     private $job;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Hobbies::class)]
+    private $hobbies;
+
+    public function __construct()
+    {
+        $this->hobbies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -202,6 +212,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setJob(string $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hobbies>
+     */
+    public function getHobbies(): Collection
+    {
+        return $this->hobbies;
+    }
+
+    public function addHobby(Hobbies $hobby): self
+    {
+        if (!$this->hobbies->contains($hobby)) {
+            $this->hobbies[] = $hobby;
+            $hobby->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHobby(Hobbies $hobby): self
+    {
+        if ($this->hobbies->removeElement($hobby)) {
+            // set the owning side to null (unless already changed)
+            if ($hobby->getUser() === $this) {
+                $hobby->setUser(null);
+            }
+        }
 
         return $this;
     }

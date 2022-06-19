@@ -16,4 +16,10 @@
     <h2><a href="{{path('Edit User')}}">Modifier Profil</a></h2>
 
 </div>
+<div class="">
+{% for Hobbies in app.user.Hobbies %}
+    <h2>{{Hobbies.NAME}}</h2>
+{% endfor %}
+
+</div>
 {% endblock %}
