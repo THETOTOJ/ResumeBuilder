@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editing {{ app.user.firstname }}'s Profile{% endblock %}
+
+{% block body %}
+<div class="">
+    <h1>Adding {{ app.user.firstname }}'s languages</h1>
+    {{form(formlang) }}
+</div>
+<div class="">
+{% for lang in app.user.langs %}
+    <h2>{{lang.name}}</h2>
+    <form method="post" action="{{ path('lang_delete', {'id': lang.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ lang.id) }}">
+    <button class="btn">Delete</button>
+</form
+{% endfor %}
+</div>
+
+{% endblock %}

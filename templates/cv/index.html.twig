@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ app.user.firstname }}'s Resume!{% endblock %}
+{% block title %}'s Resume!{% endblock %}
 {% block head %}<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
@@ -43,13 +43,13 @@ font-size: 18px;
 </style>
 <div class="">
 <div class="sidebar">
-    <h1>{{ app.user.job }}</h1>
+    <h1>{{ user.job }}</h1>
     <h2>NAME</h2>
-    <h2 class="d">{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+    <h2 class="d"></h2>
     <h2>Email</h2>
-    <h2> {{ app.user.email }}</h2>
+    <h2> </h2>
     <h2>Linked</h2>
-    <h2><a href="https://www.linkedin.com/in/tahatj/">Linkedin @{{ app.user.firstname }}</a></h2>
+    <h2><a href="https://www.linkedin.com/in/tahatj/">Linkedin @</a></h2>
 </div>
 <div class="content">
     <h1>Compétensces</h1>

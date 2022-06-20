@@ -31,20 +31,16 @@ a:visited {
   background-color: transparent;
   text-decoration: none;
 }
-
 .content {
 margin-left: 250px;
 font-size: 18px;
 }
-
 .d{
     color:white !important;
 }
-
-
 </style>
 <div class="sidebar">
-    <form action="{{path('CV')}}">
+    <form action="{{ path('Edit User')}}">
         <input type="submit" value="Edit Profile" />
     </form>    
     <h1>{{ app.user.job }}</h1>
@@ -53,10 +49,10 @@ font-size: 18px;
     <h2> {{ app.user.number }}</h2>
     <h2> {{ app.user.adress }}</h2>
     <h2><a class="d" href="https://www.linkedin.com/in/tahatj/">Linkedin @{{ app.user.firstname }}</a></h2>
-    <form action="{{path('CV')}}">
+    <form action="{{ path('CVof', {'id': app.user.id}) }}">
         <input type="submit" value="Show CV" />
     </form>
-    <form action="{{path('CV')}}">
+    <form action="">
         <input type="submit" value="Contact Page" />
     </form>
 
@@ -70,9 +66,18 @@ font-size: 18px;
     {% for Hobbies in app.user.Hobbies %}
     <h4>{{Hobbies.NAME}}    </h4>
     {% endfor %}
-    <h2><a href="{{path('Edit User')}}">Edit Languages</a></h2>
-    <h2><a href="{{path('Edit User')}}">Edit Diplomas</a></h2>
+    <h2><a href="{{path('Edit Lang')}}">Edit Languages</a></h2>
+    {% for Lang in app.user.Langs %}
+    <h4>{{Lang.NAME}}    </h4>
+    {% endfor %}
+    <h2><a href="{{path('Edit Diplomas')}}">Edit Diplomas</a></h2>
+    {% for Diplomas in app.user.Diplomas %}
+    <h4>{{Diplomas.NAME}}    </h4>
+    {% endfor %}
     <h2><a href="{{path('Edit Jobs')}}">Edit Jobs</a></h2>
+    {% for Jobs in app.user.Jobs %}
+    <h4>{{Jobs.NAME}}    </h4>
+    {% endfor %}
 </div>
 
 

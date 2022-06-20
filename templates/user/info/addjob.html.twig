@@ -10,6 +10,10 @@
 <div class="">
 {% for Jobs in app.user.Jobs %}
     <h2>{{Jobs.NAME}}</h2>
+        <form method="post" action="{{ path('job_delete', {'id': Jobs.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Jobs.id) }}">
+    <button class="btn">Delete</button>
+</form>
 {% endfor %}
 
 </div>

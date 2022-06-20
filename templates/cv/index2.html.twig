@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.firstname }}'s Profile{% endblock %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block body %}
+<style>
+    .sidebar { 
+        height: 100%;
+        width:250px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-top: 40px;
+        background-color: #001225;
+        color:white; }
+.sidebar * {
+font-size: 24px;
+display: block;
+}
+a:link {
+  color: purple;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: purple;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.content {
+margin-left: 250px;
+font-size: 18px;
+}
+
+.d{
+    color:white !important;
+}
+
+
+</style>
+<div class="sidebar">
+    <form action="{{path('Edit User')}}">
+        <input type="submit" value="Edit Profile" />
+    </form>    
+    <h2><a class="d" href="https://www.linkedin.com/in/tahatj/">Linkedin @{{ app.user.firstname }}</a></h2>
+    <form action="{{path('CV')}}">
+        <input type="submit" value="Show CV" />
+    </form>
+    <form action="{{path('CV')}}">
+        <input type="submit" value="Contact Page" />
+    </form>
+
+</div>
+<div class="content">
+    <div class="stat">
+
+    </div>
+</div>
+
+
+
+</div>
+{% endblock %}

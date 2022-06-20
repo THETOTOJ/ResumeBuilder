@@ -9,7 +9,11 @@
 </div>
 <div class="">
 {% for Diplomas in app.user.Diplomas %}
-    <p>{{Diplomas.NAME}}</p><a href="/user/diplomas/edit/{{Diplomas.id}}">Edit</a>
+    <p>{{Diplomas.NAME}}</p>
+    <form method="post" action="{{ path('diploma_delete', {'id': Diplomas.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Diplomas.id) }}">
+    <button class="btn">Delete</button>
+</form>
 {% endfor %}
 
 </div>
