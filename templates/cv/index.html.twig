@@ -1,70 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}'s Resume!{% endblock %}
-{% block head %}<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-{% endblock %}
 
 {% block body %}
+
 <style>
-    .sidebar { 
-        height: 100%;
-        width:250px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        padding-top: 40px;
-        background-color: #001225;
-        color:white; }
-.sidebar * {
-font-size: 24px;
-display: block;
+body{
+  margin:0;
+}
+.sidebar { 
+width:25vw;
+min-height: 100vh;
+padding-left:25px;
+padding-right:25px;
+background-color: #001225;
+color:white; }
+.content{
+  width:100%;
+  background-color:;
+    display: flex;
+  justify-content: space-around;
+}
+i{
+  color:#00a9b0; 
 }
 a:link {
   color: white;
-  background-color: transparent;
   text-decoration: none;
 }
 a:visited {
-  color: whitef;
-  background-color: transparent;
+  color: white;
   text-decoration: none;
 }
 
-.content {
-margin-left: 250px;
-font-size: 18px;
+.flex{
+    display: flex;
 }
 
-.d{
-    color:white;
+.da{
+  width:100%;
+  margin-left:50px;
+
+}
+.da2{
+  width:100%;
+  margin-left:50px;
+}
+.da1{
+  margin-right:50px;
+  margin-left:50px;
 }
 
+h1{
+  color:#00a9b0;
+  font-family: "brandon-grotesque", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-weight: 700;
+  text-decoration:underline;
+}
+ul {  list-style-type: none;  margin: 0;
+  padding: 0px;
+}
 
+h4 { font-weight:normal; font-size:18px;}
+.info{
+margin-left:10px;
+margin-top:20vh;
+
+}
 </style>
-<div class="">
+<div class="flex">
 <div class="sidebar">
-    <h1>{{ user.job }}</h1>
-    <h2>NAME</h2>
-    <h2 class="d"></h2>
-    <h2>Email</h2>
-    <h2> </h2>
-    <h2>Linked</h2>
-    <h2><a href="https://www.linkedin.com/in/tahatj/">Linkedin @</a></h2>
+  <div class="info">
+    <h3><i class="fa-solid fa-briefcase"></i><br>{{ user.job|capitalize }}</h3>
+    <h3><i class="fa-solid fa-user"></i><br>{{ user.firstname|capitalize }} {{ user.lastname|capitalize }}</h3>
+    <h3><i class="fa-solid fa-envelope"></i><br>{{ user.email |capitalize}}</h3>
+    <h3><i class="fa-solid fa-phone"></i><br>{{ user.number }}</h3>
+    <h3><i class="fa-solid fa-house"></i><br>{{ user.adress }}</h3>
+    <h3><a href="{{ user.linkedin }}"><i class="fa-brands fa-linkedin"></i><br>{{ user.firstname|capitalize }}</a></h3>
+  </div>
 </div>
 <div class="content">
-    <h1>Compétensces</h1>
+  <div class="da">
+    <div>
     <h1>Langues</h1>
+    <ul>
+    {% for Lang in user.Langs %}
+    <li><h3>{{Lang.NAME|capitalize}}</h3></li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div>
+    <h1>Compétences</h1>
+    <ul>
+    {% for Skills in user.Skills %}
+    <li><h3>{{Skills.NAME|capitalize}}</h3></li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div> 
     <h1>Hobbies</h1>
-    <h1>Hobbies</h1>
-
+    <ul>
+    {% for Hobbies in user.Hobbies %}
+    <li><h3>{{Hobbies.NAME|capitalize}}</h3></li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  <div class="da2">
     <h1>Diplome</h1>
-        <h2>date</h2>
-        <h2>Lieu</h2>
-    
+    {% for Diplomas in user.Diplomas %}
+    <h2>{{Diplomas.NAME|capitalize}} <br> {{Diplomas.DATE|date('m-Y')}}</h2>
+    <h3>{{Diplomas.SCHOOL|capitalize}}</h3>
+    </br>
+    {% endfor %}
+   </div>
+    <div class="da1">
     <h1>Experiences</h1>
-        <h2>date</h2>
-        <h2>Lieu</h2>
-        <h2>Description</h2>
+    {% for Jobs in user.Jobs %}
+    <h2>{{Jobs.NAME|capitalize}}<br>{{Jobs.DATE |date('m-Y')}}</h2>
+    <h3>{{Jobs.COMPANY|capitalize}}</h3>
+    <h4>{{Jobs.DESCRIPTION|capitalize}}</h4>
+    </br>
+    {% endfor %}
+  </div>
 
 
 </div>
