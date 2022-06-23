@@ -8,13 +8,23 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Tahat/Desktop/stage/rat/resumebuilder/src/Controller/InfoController.php'|file_link(0) }}">src/Controller/InfoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Tahat/Desktop/stage/rat/resumebuilder/templates/info/index.html.twig'|file_link(0) }}">templates/info/index.html.twig</a></code></li>
-    </ul>
+<div class="sidebar">
+  <div class="info">
+    <form action="{{ path('User')}}">
+        <input class="btn1" type="submit" value="User" />
+    </form>
+    <h3><i class="fa-solid fa-briefcase"></i><br>{{ app.user.job|capitalize }}</h3>
+    <h3><i class="fa-solid fa-user"></i><br>{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</h3>
+    <h3><i class="fa-solid fa-envelope"></i><br>{{ app.user.email |capitalize}}</h3>
+    <h3><i class="fa-solid fa-phone"></i><br>{{ app.user.number }}</h3>
+    <h3><i class="fa-solid fa-house"></i><br>{{ app.user.adress }}</h3>
+    <h3><a class="linkedin"href="{{ app.user.linkedin }}"><i class="fa-brands fa-linkedin"></i><br>{{ app.user.firstname|capitalize }}</a></h3>
+    <form action="{{ path('CVof', {'id': app.user.id}) }}">
+        <input class="btn1"type="submit" value="Show CV" />
+    </form>
+    <form action="{{path('app_contact')}}">
+        <input class="btn1"type="submit" value="Contact Page" />
+    </form>
+  </div>
 </div>
 {% endblock %}

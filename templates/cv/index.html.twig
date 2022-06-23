@@ -3,70 +3,7 @@
 
 {% block body %}
 
-<style>
-body{
-  margin:0;
-}
-.sidebar { 
-width:25vw;
-min-height: 100vh;
-padding-left:25px;
-padding-right:25px;
-background-color: #001225;
-color:white; }
-.content{
-  width:100%;
-  background-color:;
-    display: flex;
-  justify-content: space-around;
-}
-i{
-  color:#00a9b0; 
-}
-a:link {
-  color: white;
-  text-decoration: none;
-}
-a:visited {
-  color: white;
-  text-decoration: none;
-}
 
-.flex{
-    display: flex;
-}
-
-.da{
-  width:100%;
-  margin-left:50px;
-
-}
-.da2{
-  width:100%;
-  margin-left:50px;
-}
-.da1{
-  margin-right:50px;
-  margin-left:50px;
-}
-
-h1{
-  color:#00a9b0;
-  font-family: "brandon-grotesque", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
-    font-weight: 700;
-  text-decoration:underline;
-}
-ul {  list-style-type: none;  margin: 0;
-  padding: 0px;
-}
-
-h4 { font-weight:normal; font-size:18px;}
-.info{
-margin-left:10px;
-margin-top:20vh;
-
-}
-</style>
 <div class="flex">
 <div class="sidebar">
   <div class="info">
@@ -75,7 +12,7 @@ margin-top:20vh;
     <h3><i class="fa-solid fa-envelope"></i><br>{{ user.email |capitalize}}</h3>
     <h3><i class="fa-solid fa-phone"></i><br>{{ user.number }}</h3>
     <h3><i class="fa-solid fa-house"></i><br>{{ user.adress }}</h3>
-    <h3><a href="{{ user.linkedin }}"><i class="fa-brands fa-linkedin"></i><br>{{ user.firstname|capitalize }}</a></h3>
+    <h3><a class="linkedin" href="{{ user.linkedin }}"><i class="fa-brands fa-linkedin"></i><br>{{ user.firstname|capitalize }}</a></h3>
   </div>
 </div>
 <div class="content">
@@ -106,7 +43,7 @@ margin-top:20vh;
     </div>
   </div>
   <div class="da2">
-    <h1>Diplome</h1>
+    <h1>Diplomes</h1>
     {% for Diplomas in user.Diplomas %}
     <h2>{{Diplomas.NAME|capitalize}} <br> {{Diplomas.DATE|date('m-Y')}}</h2>
     <h3>{{Diplomas.SCHOOL|capitalize}}</h3>

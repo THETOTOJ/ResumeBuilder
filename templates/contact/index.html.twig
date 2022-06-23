@@ -4,17 +4,40 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+.form{
+      border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button[type=submit] {
+  width: 100%;
+  background-color:  #00a9b0;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius:4px;
+  cursor: pointer;
+}
 </style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Tahat/Desktop/stage/rat/resumebuilder/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Tahat/Desktop/stage/rat/resumebuilder/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+<div class="flex">
+{% include '/info/index.html.twig' %}
+<div class="content">
+    <div class="form">
+    <h1>Partagez Votre CV</h1>
+    {{ form(contactform)}}
+    
+    </div>
+  
+</div>
 </div>
 {% endblock %}

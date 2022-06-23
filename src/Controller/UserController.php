@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\ContactType;
 
 class UserController extends AbstractController
 {
@@ -44,5 +45,35 @@ class UserController extends AbstractController
     
     );
     }
-    
+    #[Route('/user/contact', name: 'app_contact')]
+    public function contact(Request $request, \Swift_Mailer $mailer)
+    {
+        
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $contact = $form->getData();
+
+            $message = (new \Swift_Message('Nouveau'))
+
+            ->setFrom('votre@adresse.fr')
+            ->setTo($contact['email'])
+            ->setBody(
+                $this->renderView(
+                    'contact/contact.html.twig', compact('contact')
+                ),
+                'text/html'
+            )
+            ;
+            $mailer->send($message);
+
+            $this->addFlash('message', 'Email Sent');
+            return $this->redirectToRoute('app_contact',);
+        }
+
+        return $this->render('contact/index.html.twig', [
+            'contactform' => $form->createView()
+        ]);
+    }
 }

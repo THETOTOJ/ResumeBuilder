@@ -21,15 +21,6 @@ body{
   justify-content: space-around;
 }
 
-a:link {
-  color: white;
-  text-decoration: none;
-}
-a:visited {
-  color: whitef;
-  text-decoration: none;
-}
-
 .flex{
     display: flex;
 }
@@ -39,44 +30,57 @@ a:visited {
 </style>
 <div class="flex">
 <div class="sidebar">
+  <div class="info">
     <form action="{{ path('Edit User')}}">
-        <input type="submit" value="Edit Profile" />
+        <input class="btn1" type="submit" value="Edit Profile" />
     </form>
-    <h1>{{ app.user.job }}</h1>
-    <h2 >{{ app.user.firstname }} {{ app.user.lastname }}</h2>
-    <h2> {{ app.user.email }}</h2>
-    <h2> {{ app.user.number }}</h2>
-    <h2> {{ app.user.adress }}</h2>
-    <h2><a href="{{ app.user.linkedin }}">Linkedin @{{ app.user.firstname }}</a></h2>
+    <h3><i class="fa-solid fa-briefcase"></i><br>{{ app.user.job|capitalize }}</h3>
+    <h3><i class="fa-solid fa-user"></i><br>{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</h3>
+    <h3><i class="fa-solid fa-envelope"></i><br>{{ app.user.email |capitalize}}</h3>
+    <h3><i class="fa-solid fa-phone"></i><br>{{ app.user.number }}</h3>
+    <h3><i class="fa-solid fa-house"></i><br>{{ app.user.adress }}</h3>
+    <h3><a class="linkedin"href="{{ app.user.linkedin }}"><i class="fa-brands fa-linkedin"></i><br>{{ app.user.firstname|capitalize }}</a></h3>
     <form action="{{ path('CVof', {'id': app.user.id}) }}">
-        <input type="submit" value="Show CV" />
+        <input class="btn1" type="submit" value="Show CV" />
     </form>
     <form action="{{path('app_contact')}}">
-        <input type="submit" value="Contact Page" />
+        <input class="btn1" type="submit" value="Contact Page" />
     </form>
+  </div>
 </div>
 <div class="content">
-  <div class="da">
-    <h2><a href="{{path('Edit Skills')}}">Edit Skills</a></h2>
+
+  <div class="dad">
+    <div>
+    <h2><a class="edit" href="{{path('Edit Skills')}}">Edit Skills</a></h2>
     {% for Skills in app.user.Skills %}
-    <h4>{{Skills.NAME}}    </h4>
+    <h4>{{Skills.NAME|capitalize}}    </h4>
     {% endfor %}
-    <h2><a href="{{path('Edit Hobby')}}">Edit Hobbies</a></h2>
+    </div>
+    <div>
+    <h2><a class="edit" href="{{path('Edit Hobby')}}">Edit Hobbies</a></h2>
     {% for Hobbies in app.user.Hobbies %}
-    <h4>{{Hobbies.NAME}}    </h4>
+    <h4>{{Hobbies.NAME|capitalize}}    </h4>
     {% endfor %}
-    <h2><a href="{{path('Edit Lang')}}">Edit Languages</a></h2>
+    </div>
+    <div>
+    <h2><a class="edit"href="{{path('Edit Lang')}}">Edit Languages</a></h2>
     {% for Lang in app.user.Langs %}
-    <h4>{{Lang.NAME}}    </h4>
+    <h4>{{Lang.NAME|capitalize}}    </h4>
     {% endfor %}
-    <h2><a href="{{path('Edit Diplomas')}}">Edit Diplomas</a></h2>
+    </div>
+    <div>
+    <h2><a class="edit"href="{{path('Edit Diplomas')}}">Edit Diplomas</a></h2>
     {% for Diplomas in app.user.Diplomas %}
-    <h4>{{Diplomas.NAME}}    </h4>
+    <h4>{{Diplomas.NAME|capitalize}}    </h4>
     {% endfor %}
-    <h2><a href="{{path('Edit Jobs')}}">Edit Jobs</a></h2>
+    </div>
+    <div>
+    <h2><a class="edit" href="{{path('Edit Jobs')}}">Edit Jobs</a></h2>
     {% for Jobs in app.user.Jobs %}
-    <h4>{{Jobs.NAME}}</h4>
+    <h4>{{Jobs.NAME|capitalize}}</h4>
     {% endfor %}
+    </div>
   </div>
 
 
