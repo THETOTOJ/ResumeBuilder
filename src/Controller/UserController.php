@@ -13,7 +13,7 @@ use App\Form\ContactType;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'User')]
+    #[Route('/', name: 'User')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig');

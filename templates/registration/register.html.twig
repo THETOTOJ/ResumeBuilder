@@ -3,12 +3,74 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<style>
+body{
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;}
+.form{
+border-radius: 5px;
+  padding: 20px;
+  width:75vw;
+}
+button[type=submit] {
+  width: 100%;
+  background-color:  #00a9b0;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius:4px;
+  cursor: pointer;
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+a:link {
+  color: red;
+  text-decoration: none;
+  margin-bottom:50px;
+}
+a:visited {
+  color: red;
+  text-decoration: none;
+    margin-bottom:50px;
+
+}
+</style>
+<div class="form">
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.firstname) }}
         {{ form_row(registrationForm.lastname) }}
+        {{ form_row(registrationForm.job) }}
         {{ form_row(registrationForm.adress) }}
         {{ form_row(registrationForm.linkedin) }}
         {{ form_row(registrationForm.number) }}
@@ -19,4 +81,7 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+        <h1><a href="{{path('app_login')}}" class="h3 mb-3 font-weight-normal">Already registered? Log in</a></h1>
+
+</div>
 {% endblock %}
